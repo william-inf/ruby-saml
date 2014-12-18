@@ -56,7 +56,7 @@ module OneLogin
       end
 
       def create_logout_request_xml_doc(settings)
-        time = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%SZ")
+        time = Time.now.utc.strftime("%Y-%m-%dT%H:%M:%S.%-dZ")
 
         request_doc = XMLSecurity::Document.new
         request_doc.uuid = uuid
