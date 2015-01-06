@@ -19,8 +19,10 @@ module OneLogin
         end
         if soft
           @schema.validate(@xml).map{ return false }
+          puts "ERROR - SOFT = TRUE"
         else
           @schema.validate(@xml).map{ |error| validation_error("#{error.message}\n\n#{@xml.to_s}") }
+          puts "ERROR - Fail to validate against schema"
         end
       end
 

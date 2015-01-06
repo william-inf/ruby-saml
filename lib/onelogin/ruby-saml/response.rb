@@ -144,8 +144,10 @@ module OneLogin
 
       def validate_success_status(soft = true)
         if success?
+          puts "ERROR - validate_success_status(soft = true) = success"
           true
         else
+          puts "ERROR - validate_success_status(soft = true) = failed"
           soft ? false : validation_error(status_message)
         end
       end
@@ -169,14 +171,17 @@ module OneLogin
 
       def validate_response_state(soft = true)
         if response.empty?
+          puts "ERROR - SAML response empty"
           return soft ? false : validation_error("Blank response")
         end
 
         if settings.nil?
+          puts "ERROR - SAML settings empty"
           return soft ? false : validation_error("No settings on response")
         end
 
         if settings.idp_cert_fingerprint.nil? && settings.idp_cert.nil?
+          puts "ERROR - No fingerprint or certificate on settings"
           return soft ? false : validation_error("No fingerprint or certificate on settings")
         end
 
@@ -205,11 +210,13 @@ module OneLogin
         now = Time.now.utc
 
         if not_before && (now + (options[:allowed_clock_drift] || 0)) < not_before
+          puts "ERROR - Current time is earlier than NotBefore condition"
           @errors << "Current time is earlier than NotBefore condition #{(now + (options[:allowed_clock_drift] || 0))} < #{not_before})"
           return soft ? false : validation_error("Current time is earlier than NotBefore condition")
         end
 
         if not_on_or_after && now >= not_on_or_after
+          puts "ERROR - Current time is earlier than NotBefore condition"
           @errors << "Current time is on or after NotOnOrAfter condition (#{now} >= #{not_on_or_after})"
           return soft ? false : validation_error("Current time is on or after NotOnOrAfter condition")
         end
@@ -221,6 +228,7 @@ module OneLogin
         return true if settings.idp_entity_id.nil?
 
         unless URI.parse(issuer) == URI.parse(settings.idp_entity_id)
+          puts "ERROR - Doesn't match the issuer, expected"
           return soft ? false : validation_error("Doesn't match the issuer, expected: <#{settings.idp_entity_id}>, but was: <#{issuer}>")
         end
         true
