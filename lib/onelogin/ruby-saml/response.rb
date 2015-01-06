@@ -134,7 +134,7 @@ module OneLogin
       private
 
       def validate(soft = true)
-        valid_saml?(document, soft)      &&
+        # valid_saml?(document, soft)      &&
         validate_response_state(soft) &&
         validate_conditions(soft)     &&
         validate_issuer(soft)         &&
