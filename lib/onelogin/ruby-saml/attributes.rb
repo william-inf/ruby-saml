@@ -11,7 +11,7 @@ module OneLogin
       # By default Attributes#[] is backwards compatible and
       # returns only the first value for the attribute
       # Setting this to `false` returns all values for an attribute
-      @@single_value_compatibility = true
+      @@single_value_compatibility = false
 
       # Get current status of backwards compatibility mode.
       def self.single_value_compatibility
