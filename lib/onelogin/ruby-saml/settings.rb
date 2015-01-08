@@ -102,7 +102,7 @@ module OneLogin
         :compress_request                          => true,
         :compress_response                         => true,
         :security                                  => {
-          :authn_requests_signed    => false,
+          :authn_requests_signed    => true,
           :logout_requests_signed   => true,
           :logout_responses_signed   => true,
           :embed_sign               => true,
