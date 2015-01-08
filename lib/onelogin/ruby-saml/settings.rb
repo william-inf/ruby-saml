@@ -102,10 +102,10 @@ module OneLogin
         :compress_request                          => true,
         :compress_response                         => true,
         :security                                  => {
-          :authn_requests_signed    => false,
-          :logout_requests_signed   => false,
-          :logout_responses_signed   => false,
-          :embed_sign               => false,
+          :authn_requests_signed    => true,
+          :logout_requests_signed   => true,
+          :logout_responses_signed   => true,
+          :embed_sign               => true,
           :digest_method            => XMLSecurity::Document::SHA1,
           :signature_method         => XMLSecurity::Document::SHA1
         },

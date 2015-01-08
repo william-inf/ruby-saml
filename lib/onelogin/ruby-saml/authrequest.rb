@@ -53,6 +53,7 @@ module OneLogin
           request_params[key] = value.to_s
         end
 
+        puts "Request PARAMS - #{request_params}"
         request_params
       end
 
@@ -118,7 +119,10 @@ module OneLogin
           request_doc.sign_document(private_key, cert, settings.security[:signature_method], settings.security[:digest_method])
         end
 
+        puts "Request DOC - #{request_doc}"
         request_doc
+
+
       end
 
     end
